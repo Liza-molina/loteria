@@ -53,6 +53,23 @@ def loteria_filas_dinamicas(x):
         return render_template('tablero.html', filas=filas,
                                 columnas=columnas, 
                                 tablero=tablero)
+
+# Ruta 3 tablero X y Y
+@app.route ('/loteria/<int:x>/<int:y>')
+def loteria_filas_columnas_dinamicas(x,y):
+        filas = x
+        columnas = y
+        tablero = []
+        for r in range (filas):
+                fila_actual = []
+                for c in range(columnas):
+                        color_index =(r +c)%len(COLORES_TABLERO)
+                        color = COLORES_TABLERO [color_index]
+                        fila_actual.append({'color':color})
+                tablero.append(fila_actual) 
+        return render_template('tablero.html', filas = filas, 
+                               columnas= columnas, 
+                               tablero =tablero )
                 
                 
 
